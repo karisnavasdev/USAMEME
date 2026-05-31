@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>USA MEME ($USAMEME) — AMERICA IS BACK</title>
+  <meta name="description" content="Welcome to $USAMEME, the ultimate USA-inspired memecoin on Solana. Freedom, fun, and community. AMERICA IS BACK." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --red: #bf0a30;
+      --blue: #002868;
+      --white: #ffffff;
+      --gold: #ffd700;
+      --navy: #0a1628;
+      --glass: rgba(0, 20, 50, 0.82);
+      --glass-light: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 215, 0, 0.35);
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--white);
+      background: var(--navy);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .site-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: url("bCK.jpg") center center / cover no-repeat;
+      background-attachment: fixed;
+    }
+
+    .site-bg-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(0, 15, 40, 0.45) 0%, rgba(0, 8, 25, 0.55) 50%, rgba(0, 5, 18, 0.65) 100%),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 48px,
+          rgba(255, 255, 255, 0.012) 48px,
+          rgba(255, 255, 255, 0.012) 49px
+        );
+      pointer-events: none;
+    }
+
+    .stars-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+      background-image:
+        radial-gradient(1px 1px at 10% 20%, white, transparent),
+        radial-gradient(1px 1px at 30% 60%, white, transparent),
+        radial-gradient(1.5px 1.5px at 70% 15%, white, transparent),
+        radial-gradient(1px 1px at 85% 45%, white, transparent),
+        radial-gradient(1px 1px at 50% 80%, white, transparent),
+        radial-gradient(1.5px 1.5px at 20% 90%, white, transparent);
+      background-size: 100% 100%;
+    }
+
+    .wrap { position: relative; z-index: 1; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 2rem;
+      background: rgba(0, 20, 50, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 3px solid;
+      border-image: linear-gradient(90deg, var(--red), var(--white), var(--blue), var(--gold)) 1;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .nav-title {
+      font-family: "Anton", sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
+    }
+
+    .nav-title span {
+      display: block;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 0.95rem;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); text-shadow: 0 0 12px rgba(255, 215, 0, 0.5); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    }
+
+    .btn:hover { transform: translateY(-2px) scale(1.02); filter: brightness(1.08); }
+
+    .btn-red {
+      background: linear-gradient(135deg, #e31837, var(--red));
+      color: var(--white);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 30px rgba(191, 10, 48, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #ffe566, var(--gold), #e6b800);
+      color: var(--navy);
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 8px 30px rgba(255, 215, 0, 0.35);
+    }
+
+    .btn-blue {
+      background: linear-gradient(135deg, #1a4480, var(--blue));
+      color: var(--white);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 30px rgba(0, 40, 104, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--gold);
+    }
+
+    .btn-outline:hover { background: rgba(255, 215, 0, 0.12); }
+
+    .nav-cta { padding: 0.55rem 1.25rem; font-size: 1rem; }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 2px solid var(--gold);
+      color: var(--white);
+      font-size: 1.4rem;
+      padding: 0.25rem 0.6rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      margin-top: 76px;
+      background: linear-gradient(90deg, var(--red), var(--blue), var(--red));
+      border-bottom: 2px solid var(--gold);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 28s linear infinite;
+      padding: 0.55rem 0;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.15em;
+    }
+
+    .ticker-track span { padding: 0 2rem; }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2rem; }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-head h2 {
+      font-family: "Anton", sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, var(--white) 30%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    .section-head .stripe {
+      width: 120px;
+      height: 5px;
+      margin: 1rem auto 0;
+      background: linear-gradient(90deg, var(--red), var(--white), var(--blue));
+      border-radius: 3px;
+    }
+
+    .section-head p {
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 2rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-family: "Anton", sans-serif;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-shadow: 4px 4px 0 var(--red), 8px 8px 0 var(--blue);
+    }
+
+    .hero-text h1 .gold { color: var(--gold); -webkit-text-fill-color: var(--gold); }
+
+    .hero-tagline {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--gold);
+      letter-spacing: 0.25em;
+      margin: 1.25rem 0;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+      animation: pulse-gold 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-gold {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
+    .hero-symbol {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--red), var(--blue));
+      padding: 0.35rem 1.2rem;
+      border: 2px solid var(--gold);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    .hero-visual { position: relative; }
+
+    .hero-banner {
+      width: 100%;
+      border-radius: 12px;
+      border: 4px solid;
+      border-image: linear-gradient(135deg, var(--gold), var(--red), var(--blue)) 1;
+      box-shadow: var(--shadow), 0 0 60px rgba(191, 10, 48, 0.25);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      border: 3px solid var(--gold);
+      padding: 0.5rem 1.5rem;
+      font-family: "Anton", sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+      box-shadow: var(--shadow);
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .about-card {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .about-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-card h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .about-card p {
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .about-full {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.85;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* ── HOW TO BUY ── */
+    #howtobuy .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      text-align: center;
+      padding: 2rem 1.25rem 1.5rem;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, var(--red), var(--blue));
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      font-family: "Anton", sans-serif;
+      font-size: 1.3rem;
+    }
+
+    .step h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+      color: var(--gold);
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.6;
+    }
+
+    .buy-cta {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .ca-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px dashed var(--gold);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .ca-box code {
+      font-family: "Courier New", monospace;
+      font-size: 0.82rem;
+      word-break: break-all;
+      color: var(--gold);
+    }
+
+    .copy-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      background: var(--gold);
+      color: var(--navy);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .copy-btn:hover { filter: brightness(1.1); }
+
+    /* ── CHART ── */
+    #chart .chart-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 3px solid var(--gold);
+      box-shadow: var(--shadow);
+      background: #0d1117;
+    }
+
+    #chart iframe {
+      display: block;
+      width: 100%;
+      height: 520px;
+      border: none;
+    }
+
+    .chart-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    /* ── GALLERY ── */
+    #gallery .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:hover {
+      border-color: var(--gold);
+      transform: scale(1.03);
+      box-shadow: 0 12px 40px rgba(255, 215, 0, 0.25);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.08); }
+
+    .gallery-item::after {
+      content: "🇺🇸";
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      font-size: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* ── JOIN US ── */
+    #joinus .join-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .join-card { text-align: center; padding: 2.5rem; }
+
+    .join-card .logo-lg {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid var(--gold);
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+    }
+
+    .join-card h3 {
+      font-family: "Anton", sans-serif;
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .join-card p {
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.5rem;
+      background: var(--glass-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .social-links a:hover {
+      background: rgba(255, 215, 0, 0.12);
+      border-color: var(--gold);
+    }
+
+    .social-links svg { width: 20px; height: 20px; fill: currentColor; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.92);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      border: 3px solid var(--gold);
+      box-shadow: var(--shadow);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 2rem;
+      background: var(--red);
+      border: 2px solid var(--white);
+      color: var(--white);
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-top: 3px solid;
+      border-image: linear-gradient(90deg, var(--blue), var(--white), var(--red)) 1;
+      background: rgba(0, 10, 30, 0.95);
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    footer .footer-brand {
+      font-family: "Anton", sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-btns { justify-content: center; }
+      .hero-visual { order: -1; max-width: 500px; margin: 0 auto; }
+      #about .about-grid { grid-template-columns: 1fr; }
+      #howtobuy .steps { grid-template-columns: 1fr 1fr; }
+      #joinus .join-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 0.6rem 1rem; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: rgba(0, 20, 50, 0.98);
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 2px solid var(--gold);
+      }
+      .nav-links.open { display: flex; }
+      .menu-toggle { display: block; }
+      .nav-cta-wrap { display: none; }
+      #howtobuy .steps { grid-template-columns: 1fr; }
+      section { padding: 3.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true"></div>
+  <div class="site-bg-overlay" aria-hidden="true"></div>
+  <div class="stars-bg"></div>
+  <div class="wrap">
+
+    <nav>
+      <a href="#hero" class="nav-brand">
+        <img src="chrome_pielYPXJ6w.png" alt="USA MEME Logo" class="nav-logo" />
+        <div class="nav-title">
+          USA MEME
+          <span>$USAMEME</span>
+        </div>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#howtobuy">How to Buy</a></li>
+        <li><a href="#chart">Chart</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#joinus">Join Us</a></li>
+      </ul>
+      <div class="nav-cta-wrap">
+        <a href="#" id="nav-buy-btn" class="btn btn-red nav-cta" target="_blank" rel="noopener">BUY NOW</a>
+      </div>
+    </nav>
+
+    <div class="ticker">
+      <div class="ticker-track">
+        <span>🇺🇸 AMERICA IS BACK 🇺🇸</span>
+        <span>★ $USAMEME ★</span>
+        <span>🔥 THE ULTIMATE USA MEMECOIN ON SOLANA 🔥</span>
+        <span>🦅 FREEDOM • FUN • COMMUNITY 🦅</span>
+        <span>💰 LOW FEES • INSTANT TX 💰</span>
+        <span>🇺🇸 AMERICA IS BACK 🇺🇸</span>
+        <span>★ $USAMEME ★</span>
+        <span>🔥 THE ULTIMATE USA MEMECOIN ON SOLANA 🔥</span>
+        <span>🦅 FREEDOM • FUN • COMMUNITY 🦅</span>
+        <span>💰 LOW FEES • INSTANT TX 💰</span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <div class="hero-symbol">$USAMEME</div>
+          <h1>USA<br /><span class="gold">MEME</span></h1>
+          <p class="hero-tagline">★ AMERICA IS BACK ★</p>
+          <p class="hero-desc">
+            The ultimate USA-inspired memecoin on Solana. Freedom, fun, and a patriotic community
+            ready to meme our way to the moon. Built for speed. Built for America. Built for you.
+          </p>
+          <div class="hero-btns">
+            <a href="#" id="hero-buy-btn" class="btn btn-red" target="_blank" rel="noopener">🚀 BUY ON PUMPSWAP</a>
+            <a href="#chart" class="btn btn-outline">📈 VIEW CHART</a>
+            <a href="https://x.com/TrumpiusEmperor" class="btn btn-blue" target="_blank" rel="noopener">𝕏 FOLLOW US</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="12313.jpg" alt="USA MEME Banner — The Golden Age Will Continue" class="hero-banner" />
+          <div class="hero-badge">🇺🇸 PATRIOTIC AF 🇺🇸</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-head">
+        <h2>About $USAMEME</h2>
+        <div class="stripe"></div>
+        <p>The memecoin that celebrates innovation, humor, and the true American spirit.</p>
+      </div>
+      <div class="about-grid">
+        <div class="card about-card">
+          <div class="about-icon">🦅</div>
+          <h3>Patriotic Community</h3>
+          <p>Join a vibrant army of holders who love memes, contests, and NFT collaborations.</p>
+        </div>
+        <div class="card about-card">
+          <div class="about-icon">⚡</div>
+          <h3>Blazing Fast Solana</h3>
+          <p>Low fees, instant transactions, and a secure environment for newcomers and DeFi veterans alike.</p>
+        </div>
+        <div class="card about-card">
+          <div class="about-icon">🎭</div>
+          <h3>Viral Meme Culture</h3>
+          <p>Embrace the meme, ride the wave, and celebrate freedom and fun on the blockchain.</p>
+        </div>
+      </div>
+      <div class="card about-full">
+        Welcome to $USAMEME, the ultimate USA-inspired memecoin on the Solana blockchain! Born from the spirit of freedom, fun, and community, $USAMEME combines the power of decentralized finance with viral internet culture. Our mission is to create a vibrant, patriotic crypto community where holders not only invest but also participate in memes, contests, and NFT collaborations. Built on Solana's blazing-fast network, $USAMEME ensures low fees, instant transactions, and a secure environment for everyone—from crypto newcomers to seasoned DeFi enthusiasts. Join the revolution, embrace the meme, and ride the wave of $USAMEME as we celebrate innovation, humor, and the true American spirit in the blockchain era.
+      </div>
+    </section>
+
+    <!-- HOW TO BUY -->
+    <section id="howtobuy">
+      <div class="section-head">
+        <h2>How to Buy</h2>
+        <div class="stripe"></div>
+        <p>Four easy steps to join the $USAMEME revolution on PumpSwap.</p>
+      </div>
+      <div class="steps">
+        <div class="card step">
+          <h3>Get a Wallet</h3>
+          <p>Download Phantom, Solflare, or your favorite Solana wallet. Create or import your wallet securely.</p>
+        </div>
+        <div class="card step">
+          <h3>Fund with SOL</h3>
+          <p>Buy SOL on an exchange and send it to your wallet. You'll need SOL for the swap and gas fees.</p>
+        </div>
+        <div class="card step">
+          <h3>Connect to PumpSwap</h3>
+          <p>Hit the buy button below to open PumpSwap with $USAMEME pre-loaded. Connect your wallet.</p>
+        </div>
+        <div class="card step">
+          <h3>Swap &amp; HODL</h3>
+          <p>Confirm the swap, grab your $USAMEME, and join the community. AMERICA IS BACK! 🇺🇸</p>
+        </div>
+      </div>
+      <div class="card buy-cta">
+        <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.5rem;">Contract Address</h3>
+        <div class="ca-box">
+          <code id="ca-display">Loading...</code>
+          <button class="copy-btn" onclick="copyCA()">Copy CA</button>
+        </div>
+        <a href="#" id="buy-btn" class="btn btn-gold" target="_blank" rel="noopener" style="margin-top:0.5rem;">🇺🇸 BUY $USAMEME ON PUMPSWAP 🇺🇸</a>
+      </div>
+    </section>
+
+    <!-- CHART -->
+    <section id="chart">
+      <div class="section-head">
+        <h2>Live Chart</h2>
+        <div class="stripe"></div>
+        <p>Track $USAMEME price action in real time on DexScreener.</p>
+      </div>
+      <div class="chart-wrap">
+        <iframe id="dex-iframe" title="DexScreener Chart" allow="clipboard-write" loading="lazy"></iframe>
+      </div>
+      <div class="chart-links">
+        <a href="#" id="dex-link" class="btn btn-blue" target="_blank" rel="noopener">Open on DexScreener</a>
+        <a href="#" id="chart-buy-link" class="btn btn-red" target="_blank" rel="noopener">Buy on PumpSwap</a>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="section-head">
+        <h2>Meme Gallery</h2>
+        <div class="stripe"></div>
+        <p>The finest patriotic memes from the $USAMEME army. Click to enlarge.</p>
+      </div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+    </section>
+
+    <!-- JOIN US -->
+    <section id="joinus">
+      <div class="section-head">
+        <h2>Join Us</h2>
+        <div class="stripe"></div>
+        <p>Connect with the $USAMEME community and ride the wave together.</p>
+      </div>
+      <div class="join-grid">
+        <div class="card join-card">
+          <img src="chrome_pielYPXJ6w.png" alt="USA MEME" class="logo-lg" />
+          <h3>USA MEME</h3>
+          <p>Follow us on X for the latest memes, announcements, and community vibes. The revolution is just getting started.</p>
+          <div class="social-links">
+            <a href="https://x.com/TrumpiusEmperor" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              @TrumpiusEmperor
+            </a>
+          </div>
+        </div>
+        <div class="card join-card">
+          <h3 style="margin-bottom:1.25rem;">🦅 Community Mission 🦅</h3>
+          <p style="text-align:left;margin-bottom:1rem;">We're building more than a token — we're building a movement. Share memes, spread the word, and represent the true American spirit in crypto.</p>
+          <ul style="text-align:left;list-style:none;line-height:2.2;color:rgba(255,255,255,0.8);">
+            <li>✅ Share patriotic memes</li>
+            <li>✅ Tag us on X</li>
+            <li>✅ HODL $USAMEME</li>
+            <li>✅ Spread AMERICA IS BACK</li>
+          </ul>
+          <a href="#" id="join-buy-btn" class="btn btn-red" target="_blank" rel="noopener" style="margin-top:1.5rem;">GET $USAMEME NOW</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-brand">USA MEME — $USAMEME</div>
+      <p>AMERICA IS BACK 🇺🇸<br />
+      $USAMEME is a memecoin with no intrinsic value or expectation of financial return. This website is for entertainment purposes only. Always DYOR. Not financial advice.</p>
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox(event,true)">&times;</button>
+    <img id="lightbox-img" src="" alt="Meme" />
+  </div>
+
+  <script>
+    // ═══ UPDATE THIS CONTRACT ADDRESS WHEN TOKEN LAUNCHES ═══
+    const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS_HERE";
+
+    const SOL_MINT = "So11111111111111111111111111111111111111112";
+    const pumpswapUrl = `https://swap.pump.fun/?input=${SOL_MINT}&output=${CONTRACT_ADDRESS}`;
+    const dexUrl = `https://dexscreener.com/solana/${CONTRACT_ADDRESS}`;
+    const dexEmbed = `${dexUrl}?embed=1&theme=dark&trades=0&info=0`;
+
+    document.getElementById("ca-display").textContent = CONTRACT_ADDRESS;
+
+    const buyIds = ["nav-buy-btn", "hero-buy-btn", "buy-btn", "chart-buy-link", "join-buy-btn"];
+    buyIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.href = pumpswapUrl;
+    });
+
+    document.getElementById("dex-link").href = dexUrl;
+    document.getElementById("dex-iframe").src = dexEmbed;
+
+    function copyCA() {
+      navigator.clipboard.writeText(CONTRACT_ADDRESS).then(() => {
+        const btn = document.querySelector(".copy-btn");
+        btn.textContent = "Copied!";
+        setTimeout(() => { btn.textContent = "Copy CA"; }, 2000);
+      });
+    }
+
+    const galleryImages = [
+      "1.jpg",
+      "123.jpg",
+      "12313.jpg",
+      "31.jpg",
+      "41.jpg",
+      "412.jpg",
+      "4123.jpg",
+      "441.png",
+      "4441.png",
+      "chrome_pielYPXJ6w.png"
+    ];
+
+    const grid = document.getElementById("gallery-grid");
+    galleryImages.forEach(src => {
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+      item.innerHTML = `<img src="${src}" alt="USA MEME Gallery" loading="lazy" />`;
+      item.onclick = () => openLightbox(src);
+      grid.appendChild(item);
+    });
+
+    function openLightbox(src) {
+      document.getElementById("lightbox-img").src = src;
+      document.getElementById("lightbox").classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(e, force) {
+      if (force || e.target.id === "lightbox") {
+        document.getElementById("lightbox").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeLightbox({ target: { id: "lightbox" } });
+    });
+  </script>
+</body>
+</html>
